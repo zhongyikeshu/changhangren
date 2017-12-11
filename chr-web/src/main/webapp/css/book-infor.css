@@ -1,0 +1,14 @@
+#book-info-main{width: 1300px; height: 700px;margin: 20px auto;}
+.book-info{width: 1300px; height: 800px;margin: 20px auto;/*border:1px solid #000;*/}
+.book-info-main{width: 1300px;height: 570px;/*border:1px solid red;*/position: relative;}
+.biml{position: absolute;width: 422px;height: 522px;top: 40px;left: 75px;/*border:1px solid yellow;*/}
+.biml-t{position: absolute;width: 420px;height: 420px;top: 0;left: 0;}
+.biml-t img{width: 420px;height: 420px;}
+.biml-b{width: 420px;height: 64px;position: absolute;left: 0;top: 445px;line-height: 66px;}
+.biml-b ul{width: 420px;height: 64px;}
+.biml-b ul li{float: left;list-style: none;width: 64px;height: 64px;margin-left: 16px;text-align: center;line-height: 64px;}
+.biml-b ul li img{width: 60px;height: 60px;}
+.biml-b ul li:hover img{border:2px solid #000;}
+.bimr{position: absolute;width: 600px;height: 522px;top: 40px;left: 560px;/*border:1px solid red;*/font-size: 20px;font-family: 宋体;}
+.book-inq{width: 560px;height: 500px;margin-top: 20px 10px 0;}
+.book-font{font-size: 21px;font-weight: 80px;}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<!-- 
+		<constant name="struts.objectFactory" value="spring"/>
+	 -->
+	 
+	<package name="basicstruts2" extends="struts-default">
+		<!-- 需要进行权限控制的页面访问 -->
+		<!-- <action name="page_*_*">
+			<result type="dispatcher">/WEB-INF/stu-info-manage-html/{1}/{2}.jsp</result>
+		</action> -->
+		<!-- 全局结果集 -->
+		<global-results>
+		    <result name="login">/login.jsp</result> 
+		   
+		</global-results>
+		<action name="page_*">
+			<result type="dispatcher">/WEB-INF/stu-info-manage-html/{1}.jsp</result>
+		</action>
+		
+		
+		<action name="userAction_*" class="userAction" method="{1}">
+		    <result name="index">/index.jsp</result>
+		    <result name="login">/login.jsp</result>
+		    <result name="register">/register.jsp</result>
+		    
+		</action>
+		<!-- 书籍 -->
+		<action name="bookAction_*" class="bookAction" method="{1}">
+		   	 <result name="bookList">/book.jsp</result>
+		   	 <result name="myBookList">/user-bk.jsp</result>
+		   	 <result name="bookInfo">/book-info.jsp</result>
+		</action>
+		<!-- 书籍分类列表 -->
+		<action name="categoryAction_*" class="categoryAction" method="{1}">
+		   	
+		</action>
+		<!-- 借阅 -->
+		<action name="borrowAction_*" class="borrowAction" method="{1}">
+		   	 <result name="jieyue">/user-jy.jsp</result>
+		   	  
+		</action>
+		<!-- 学生 -->
+		<action name="stuAction_*" class="stuAction" method="{1}">
+		   	  <result name="chengji">/stu/stu-info-manage-html/stu-sco-info-man.jsp</result>
+		   	  
+		</action>
+		<!-- 评论 -->
+		<action name="messageAction_*" class="messageAction" method="{1}">
+		   	   <result name="login">/login.jsp</result> 
+		   	  
+		</action>
+	</package>
+</struts>
