@@ -1,0 +1,233 @@
+*{
+			margin:0;
+			padding:0;
+		}
+		a{
+			text-decoration: none;
+			color: #333;
+		}
+		li{
+			list-style: none;
+		}
+		#ban{
+			height: 86px;
+		}
+		.banlog{
+			width: 95px;
+			height: 30px;
+			float: left;
+			margin-left: 6%;
+			margin-top: 28px;
+		}
+		.bannav{
+			width: 35%;
+			float: right;
+			height: 30px;
+			margin-right: 6%;
+			margin-top: 28px;
+		}
+		.bannav ul li{
+			float: left;
+			width: 20%;
+			text-align: center;
+			line-height: 30px;
+		}
+		.bannav ul li a{
+			color:  #0BB298;
+		}
+		#header{
+			height: 200px;
+			margin:0 auto;
+			background: url(../../images/rich_bg6.jpg);
+			text-align: center;
+			overflow: hidden;
+		}
+		.header-mid{
+			height: 85px;
+			margin-top: 57.5px;
+		}
+		.header-mid span{
+			color: #FFF;
+    		font-size: 52px;
+    		font-weight: bold;
+		}
+		.hmc{
+			height: 12px;
+		}
+		#mid-top{
+			height: 100px;
+		}
+		.btn{
+			height: 40px;
+			background-color: #0BB298;
+			border:0;
+			color: #FFF;
+			margin-top: 30px;
+		}
+		.btn1{
+			width: 70px;
+			margin-left: 4.5%;
+		}
+		.btn2{
+			width: 70px;
+			margin-left: 10px;
+		}
+		.upload{
+			width: 40px;
+			margin-left: 10px;
+			font-size: 20px;
+			padding:0;
+		}
+		.goodsinfo{
+			position: absolute;
+			left: 4.5%;
+			top:320px;
+			z-index: 10;
+			width: 40%;
+			height: 350px;
+			margin:40px auto;
+			border:1px solid #0BB298;
+			background-color: #FFF;
+		}
+		.hid{
+			display: none;
+		}
+		.gootit{
+			width: 96%;
+			height: 30px;
+			margin:10px auto;
+			/*outline-style: none;*/
+			padding:4px;
+			border:1px solid #0BB298;
+			color: #757575;
+		}
+		.goocon{
+			width: 96%;
+			height: 100px;
+			/*outline-style: none;*/
+			padding:4px;
+			border:1px solid #0BB298;
+			margin: 10px auto 0;
+			color: #757575;
+		}
+		[contentEditable=true]:empty:not(:focus):before{
+    		content:attr(data-text);
+		}
+		.gooimgs{
+			width: 96%;
+			height: 130px;
+			margin: 10px auto 0;
+		}
+		.gooimgs div{
+			float: left;
+			width: 30%;
+			height: 130px;
+			margin-right: 1%;
+			text-align: center;
+			/*border:1px solid #0BB298;*/
+		}
+		.gooimgs div label{
+			width: 100%;
+		}
+		.dooup{
+			width: 99%
+			height:60px;
+			padding:10px;
+		}
+		.dooup button{
+			width: 70px;
+			height: 40px;
+			/*outline-style: none;*/
+			border:0;
+			background-color: #0BB298; 
+		}
+		.sea{
+			width: 305px;
+			height: 40px;
+			float: right;
+			margin-top: 30px;
+			margin-right:4.5%;
+			/*border:1px solid #333;*/
+		}
+		.seac{
+			width: 260px;
+			height: 40px;
+			font-size: 14px;
+			outline: none;
+			display: block;
+			float: left;
+			margin-left: 5px;
+		}
+		.sea span{
+			display: block;
+			float: right;
+			width: 40px;
+			height: 40px;
+			text-align: center;
+			line-height: 40px;
+			font-size: 19px;
+			color: #FFF;
+			background-color:#0BB298;
+			margin-top: -1px;
+		}
+		.titl{
+			color: red;
+			font-size: 18px;
+			padding-bottom: 5px;
+		}
+		.goodsimg{
+			padding-top:5px;
+			padding-bottom:5px;
+		}
+		.goodsimg img{
+			width: 100px;
+			height: 100px;
+		}
+		#footer{
+			width: 100%;
+    		box-shadow: 0px -10px 30px #C0DAF3;
+    		background: #313131;
+		}
+		#footer .inner {
+    		width: 88%;
+    		padding: 6px 0;
+    		margin: 0 auto 0;
+		}
+		.clearfix {
+		    clear: both;
+		}
+		#footer .footer_part {
+    		width: 33.3%;
+    		float: left;
+		}
+		.tl {
+    		text-align: left;
+		}
+		#footer h3 {
+    		color: #e8e8e8;
+    		margin-bottom: 20px;
+		}
+		#footer li {
+    		line-height: 2;
+		}
+		#footer a {
+    		font-size: 14px;
+    		color: #c0c0c0;
+		}
+		.tc {
+    		text-align: center;
+		}
+		.tr {
+    		text-align: right;
+		}
+		#footer .inner_bot {
+    		width: 100%;
+    		background: #232323;
+    		padding: 2px 5%;
+		}
+		#footer .inner_bot p {
+			margin:0;
+    		font-size: 13px;
+    		color: #989898;
+    		line-height: 13px;
+		}
