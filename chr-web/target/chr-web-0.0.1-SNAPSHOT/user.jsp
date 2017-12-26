@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,33 +27,19 @@
 <!-- 页头 -->
 <div id="user-header">
 	<!-- 导航栏 -->
-	<div class="nav_wrap">
-	<div class="nav_con">
-		<div class="nav_cont">
-			<span class="nav_cont_l">www.changhangren.top</span>
-			<span class="nav_cont_r">联系我们:@changhangren.top</span>
-		</div>
-	</div>
-	<nav>
-		<div class="nav_logo"><h1><a href="index.html" title="昌航人">昌航人</a></h1></div>
-		<div class="nav_nav">
-			<ul>
-				<li><a href="#">首页</a></li>
-				<li><a href="#">关于</a></li>
-				<li><a href="#">联系</a></li>
-			<div class="nav_btn-1">
-			<a href="javascript:;" id="btnLogin">我的</a>&nbsp;<a href="javascript:;" id="btnRegsiter">退出</a>
-			</div>
-			</ul>
-		</div>
-	</nav>
-	</div>
+	<jsp:include page="header.jsp"></jsp:include>
 	<!-- 头像、昵称、个性签名部分开始 -->
 	<div class="user-top">
 		<div class="user-top-con">
-			<img class="user-img" src="images/user-top-img.png">
-			<span class="user-nam">YBQ</span>
-			<span class="user-sign">这位同学很懒，木有签名的说~</span>
+			<c:if test="${empty user }">
+				<img class="user-img" src="images/user-top-img.png">
+			</c:if>
+			<c:if test="${!empty user }">
+				<img class="user-img" src="${pageContext.request.contextPath }/${user.head }">
+			</c:if>
+			
+			<span class="user-nam">${user.nick }</span>
+			<span class="user-sign">${user.word }</span>
 		</div>
 	</div>
 	<!-- 头像、昵称、个性签名部分结束 -->
@@ -62,28 +50,35 @@
 	<div class="user-main-l">
 		<ul>
 			<li>
-				<a href="#">
+				<a href="user-info.jsp" target="iframe-a">
 					<i></i>
-					<span class="show">个人信息</span>
+					<span>个人信息</span>
 					<b></b>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="javascript:void(0);" target="iframe-a">
+					<i></i>
+					<span>我的消息</span>
+					<b></b>
+				</a>
+			</li>
+			<li>
+				<a href="${pageContext.request.contextPath }/bookAction_myBook" target="iframe-a">
 					<i></i>
 					<span>我的图书</span>
 					<b></b>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="${pageContext.request.contextPath }/borrowAction_jyBook" target="iframe-a">
 					<i></i>
 					<span>我的借阅</span>
 					<b></b>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="user-sc.jsp" target="iframe-a">
 					<i></i>
 					<span>上传</span>
 					<b></b>
@@ -93,39 +88,8 @@
 	</div>
 	<!-- 左侧栏结束 -->
 	<!-- 右侧栏开始 -->
-	<div class="user-main-r">
-		<div class="user-main-rt">
-			个人信息
-		</div>
-		<form class="user-main-rm" action="" method="post">
-			<div class="user-main-rmc">
-				<span>头像</span>
-				<input type="text" name="username"  value="更改">
-			</div>
-			<div class="user-main-rmc">
-				<span>昵称</span>
-				<input type="text" name="username"  value="YBQ" >
-			</div>
-			<div class="user-main-rmc">
-				<span>账号</span>
-				<input type="text" name="username"  value="15043227" >
-			</div>
-			<div class="user-main-rmc">
-				<span>学院</span>
-				<input type="text" name="username"  value="信息工程学院" >
-			</div>
-			<div class="user-main-rmc">
-				<span>专业</span>
-				<input type="text" name="username"  value="电子信息科学与技术" >
-			</div>
-			<div class="user-main-rmc">
-				<span>个性签名</span>
-				<input type="text" name="username"  value="这位同学很懒，木有签名的说~" >
-			</div>
-			<div class="user-main-rmc">
-				<input id="user-main-rmcs" type="submit" name="username"  value="确定更改" >
-			</div>
-		</form>
+	<div class="umr">
+		<iframe src="user-info.jsp" frameborder="0" scrolling="no" name="iframe-a"></iframe>
 	</div>
 	<!-- 右侧栏结束 -->
 </div>

@@ -1,6 +1,8 @@
-function bookch1(){
+function bookch1(photo){
 			var img1=document.getElementById('biml-img');
-			img1.src="images/book-infor-1.jpg";
+			var photo1 = photo;
+			
+			img1.src="photo1";
 		}
 		function bookch2(){
 			var img2=document.getElementById('biml-img');

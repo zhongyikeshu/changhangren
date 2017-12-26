@@ -6,6 +6,7 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.junit.Test;
 import org.springframework.stereotype.Repository;
 
 import cn.yubo.chr.dao.UserDao;
@@ -24,5 +25,5 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao{
 		return null;
 		
 	}
-
+	
 }

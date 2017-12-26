@@ -1,5 +1,5 @@
 $(function () {
 	setInterval(function(){
 		$(".loading").fadeOut();
-	},800)
+	},400)
 })

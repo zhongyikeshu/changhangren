@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,32 @@
 	<script src="js/mask.js"></script>
 	<script src="http://ajax.microsoft.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
 	<script src="js/to-top.js"></script>
+	<script type="text/javascript">
+		
+		//分类 获取焦点后执行方法 ，使用ajax查询分类
+		function findCategoryList(){
+			 $.post('${pageContext.request.contextPath }/categoryAction_findCategory',function(data){
+				 $("#categoryUl").empty();
+				 $("#categoryUl").append("<li><a href='${pageContext.request.contextPath}/bookAction_findAllList'>所有分类</a></li>"); 
+				for(var i = 0;i<data.length;i++){
+					var cid = data[i].cid;
+					var cname = data[i].cname;
+					$("#categoryUl").append("<li><a href='${pageContext.request.contextPath}/bookAction_bookListByCid?cid="+cid+"'>"+cname+"</a></li>"); 
+				}
+			}); 
+		}
+		//点击详情
+		function xiangqing(bookid){
+			window.location.href="${pageContext.request.contextPath}/bookAction_findInfoById?bookid="+bookid;
+		}
+		function query(page){
+			
+			$("#cid").val("${pageBean.cid }");
+			$("#keyWord").val("${pageBean.keyWord }");
+			$("#currentPage").val(page);
+			$("#query3").submit();
+		}
+	</script>
 	<!-- <script type="text/javascript">
 		function book-infor(){
 	window.open('book-infor.html','_blank');
@@ -32,27 +59,7 @@
 <!-- 页头 -->
 <div id="header_book">
 	<!-- 导航栏 -->
-	<div class="nav_wrap">
-	<div class="nav_con">
-		<div class="nav_cont">
-			<span class="nav_cont_l">www.changhangren.top</span>
-			<span class="nav_cont_r">联系我们:@changhangren.top</span>
-		</div>
-	</div>
-	<nav>
-		<div class="nav_logo"><h1><a href="index.html" title="昌航人">昌航人</a></h1></div>
-		<div class="nav_nav">
-			<ul>
-				<li><a href="#">首页</a></li>
-				<li><a href="#">关于</a></li>
-				<li><a href="#">联系</a></li>
-			<div class="nav_btn-1">
-			<a href="javascript:;" id="btnLogin">我的</a>&nbsp;<a href="javascript:;" id="btnRegsiter">退出</a>
-			</div>
-			</ul>
-		</div>
-	</nav>
-	</div>
+	<jsp:include page="header.jsp"></jsp:include>
 	<!-- 南航书院 -->
 	<div class="book_theme">
 		<div class="book-theme-title">
@@ -67,352 +74,76 @@
 	<div class="book_nav">
 		<div class="book-nav-l">
 			<div class="book-nav-button">
-				<span class="book-nav-ls">
+				<button class="book-nav-ls" onmousemove="findCategoryList()">
 				分类&nbsp;<span class="glyphicon glyphicon-menu-down" style="font-size: 14px"></span>
-				</span>
-			<div class="book-nav-le">
-				<ul>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-				</ul>
-				<ul>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-				</ul>
-				<ul>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-				</ul>
-				<ul>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-					<li><a href="">小说</a></li>
-				</ul>
-			</div>
+				</button>
+				<div class="book-nav-le">
+					<ul id="categoryUl">
+				
+					</ul>
+				
+				</div>
 			</div>
 		</div>
 		<div class="book-nav-r">
-			<form class="book-nav-rb">
-				<input type="text" name="" class="search-text" placeholder="搜索书名或作者名"><input type="submit" name="" class="search-button" value=" ">
+			<form action="${pageContext.request.contextPath }/bookAction_bookListByKeyWord" method="post" class="book-nav-rb">
+				<input type="text" name="keyWord" value="${pageBean.keyWord }" class="search-text" placeholder="搜索书名或作者名"><input type="submit" name="" class="search-button" value="">
 			</form>
 		</div>
 	</div>
 	<div class="book_shop">
 		<ul>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
+			<c:forEach items="${pageBean.list }" var="book">
+				<li>
+					<a href="#">
+						<img src="${pageContext.request.contextPath }/${book.photo}">
+						<div class="book-mask">
+							<button onclick="xiangqing('${book.id}')">查看详情</button>
+						</div>
+					</a>
+					<div class="book-shop-nb">
+						<span class="shum">书名:${book.name }</span>
+						<span class="zuozhe">作者:${book.author }</span>
+					<%-- 	<span class="chuban">出版社:${book.press }</span> --%>
+						<span class="chuban">分类  :${book.category.cname }</span>
+						<span class="gongx">借还状态:<a href="">可借</a></span>
 					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-		</ul>
-		<ul>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-		</ul>
-		<ul>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-		</ul>
-		<ul>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
-			<li>
-				<a href="#">
-					<img src="images/book-3.jpg">
-					<div class="book-mask">
-					<button>查看详情</button>
-					</div>
-				</a>
-				<div class="book-shop-nb">
-					<span class="shum">书名:中华上下五千年</span>
-					<span class="zuozhe">作者:方卿</span>
-					<span class="chuban">出版社:北京教育出版社</span>
-					<span class="gongx">借还状态:<a href="">可借</a></span>
-				</div>
-			</li>
+				</li>
+			
+			</c:forEach>
+		
 		</ul>
 	</div>
 	<div class="book_page">
 		<div class="book-pages">
-			<a href="">&lt;</a>
+		
+			<!-- 上一页 -->
+			<c:if test="${pageBean.currentPage==1 }">
+				<a href="javascript:void(0)">&lt;</a>
+			</c:if>
+			<c:if test="${pageBean.currentPage!=1 }">
+				<a href="javascript:void(0);" onclick="query(${pageBean.currentPage-1})">&lt;</a>	
+			</c:if>
+			<!-- 显示每一页 -->
+			<c:forEach begin="1" end="${pageBean.totalPage }" var="page">
+				<c:if test="${page==pageBean.currentPage }">
+					<a style="color:yellow"   href="javascript:void(0);">${page }</a>
+				</c:if>
+				<c:if test="${page!=pageBean.currentPage }">
+					<a href="javascript:void(0);" onclick="query(${page })">${page }</a>
+				</c:if>
+			</c:forEach>
+	
+			<!-- 下一页 -->
+			<c:if test="${pageBean.currentPage==pageBean.totalPage }">
+				<a href="javascript:void(0)">&gt;</a>
+			</c:if>
+			<c:if test="${pageBean.currentPage!=pageBean.totalPage }">
+				<a href="javascript:void(0);" onclick="query(${pageBean.currentPage+1 })">&gt;</a>	
+			</c:if>
+			
+		
+			<!-- <a href="">&lt;</a>
 			<a href="">1</a>
 			<a href="">2</a>
 			<a href="">3</a>
@@ -420,7 +151,7 @@
 			<a href="">5</a>
 			<span>...</span>
 			<a href="">20</a>
-			<a href="">&gt;</a>
+			<a href="">&gt;</a> -->
 		</div>
 	</div>
 </div>
@@ -428,5 +159,10 @@
 <div id="footer">
 	<p id="footer_p">&#169;2017All Rights Reserved</p>
 </div>
+<form id="query3" action="${pageContext.request.contextPath}/bookAction_pageQuery" method="post">
+	<input id="cid" type="hidden" name="cid" value="">
+	<input id="keyWord" type="hidden" name="keyWord" value="">
+	<input id="currentPage" type="hidden" name="currentPage" value="">
+</form>
 </body>
 </html>

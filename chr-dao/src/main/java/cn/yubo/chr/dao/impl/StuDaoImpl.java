@@ -12,6 +12,7 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.junit.Test;
 import org.springframework.stereotype.Repository;
 
 
@@ -140,5 +141,20 @@ public class StuDaoImpl extends BaseDaoImpl<Xuanke> implements StuDao{
 		session.close();
 		
 	}
+	
+	@Test
+	void demo(){
+		String sql = "select * from student";
+		/*String sql = "select * from xuanke where stuid=? and classId = ?";*/
+		Configuration c = new Configuration().configure();
+		SessionFactory factory = c.buildSessionFactory();
+		Session session = factory.openSession();
+		SQLQuery query = session.createSQLQuery(sql);
+		//query.setParameter(0, stuId);
+		
+		List list = query.list();
+		session.close();
+	}
+	
 
 }

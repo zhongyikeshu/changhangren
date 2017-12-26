@@ -7,17 +7,18 @@
 .book_nav{width: 1300px; height: 100px;/*border: 1px solid green;*/margin: 0px auto;position: relative;}
 .book-nav-l{position: absolute;width: 100px;height: 40px;top: 30px;left: 40px;}
 .book-nav-button{width: 70px;height: 40px;}
-.book-nav-ls{box-shadow:0 0 4px #2D6CDF;width: 70px;height: 40px;background: #2D6CDF;color: #FFF;border:1px solid #2D6CDF; display: inline-block;line-height: 40px;text-align: center;}
+.book-nav-ls{box-shadow:0 0 4px #0BB298;width: 70px;height: 40px;background: #0BB298;color: #FFF;border:1px solid #0BB298; display: inline-block;line-height: 40px;text-align: center;}
 .book-nav-ls span{transition: transform 0.5s;-webkit-transition: -webkit-transform 0.5s;}
 .book-nav-button:hover{cursor: pointer;}
 .book-nav-button:hover .book-nav-ls span{transform:rotate(180deg);-moz-transform:rotate(180deg);-webkit-transform:rotate(180deg);-o-transform:rotate(180deg);}
-.book-nav-le{float: left;position: absolute; width: 482px;height: 162px;border: 1px solid #888;background: #FFF;display: none; }
-.book-nav-le ul{width: 480px;height: 40px;}
-.book-nav-button:hover .book-nav-le{display: block;z-index: 900;}
-.book-nav-le ul li{float: left;list-style: none;width: 60px;height: 40px;line-height: 40px;text-align: center;}
-.book-nav-le ul li a{text-decoration: none;color: #000;}
-.book-nav-le ul li:hover{background-color: #2D6CDF;}
-.book-nav-le ul li:hover a{color: #FFF;}
+.book-nav-le{float: left;position: absolute; width: 602px;/*border: 1px solid #0BB298;*//*background: #FFF;*/visibility: hidden;}
+.book-nav-le ul{width: 600px;height: 40px;}
+.book-nav-button:hover .book-nav-le{visibility: visible; z-index: 900;}
+.book-nav-button:hover .book-nav-le ul li{visibility: visible; opacity: 1;height: 40px;line-height: 40px;transition: all 1s;}
+.book-nav-le ul li{background-color: #0BB298; visibility: hidden;opacity:0;float: left;list-style: none;width: 100px;height: 0px;line-height: 0px;text-align: center;}
+.book-nav-le ul li a{text-decoration: none;color: #FFF;}
+.book-nav-le ul li:hover{background-color: #FFF;}
+.book-nav-le ul li:hover a{color: #000;}
 .book-nav-r{position: absolute;width: 320px;height: 40px;top: 30px;right: 40px;border: 0;}
 .book-nav-rb{background: #FFF;border-bottom: 1px solid #000;width: 300px;height: 40px;}
 .search-text{outline: none; border: 0;width: 262px;height: 38px;padding: 0;line-height: 38px;font-size: 14px;float: left;}

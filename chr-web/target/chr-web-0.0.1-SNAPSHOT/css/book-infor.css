@@ -1,4 +1,4 @@
-#book-info-main{width: 1300px; height: 900px;margin: 20px auto;}
+#book-info-main{width: 1300px; height: 700px;margin: 20px auto;}
 .book-info{width: 1300px; height: 800px;margin: 20px auto;/*border:1px solid #000;*/}
 .book-info-main{width: 1300px;height: 570px;/*border:1px solid red;*/position: relative;}
 .biml{position: absolute;width: 422px;height: 522px;top: 40px;left: 75px;/*border:1px solid yellow;*/}

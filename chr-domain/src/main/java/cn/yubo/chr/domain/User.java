@@ -25,6 +25,7 @@ public class User implements java.io.Serializable {
 	private Set messages = new HashSet(0);
 	private Set borrows = new HashSet(0);
 	private Set books = new HashSet(0);
+	private Set<Lost> losts = new HashSet();		//失物招领
 
 	// Constructors
 
@@ -167,6 +168,18 @@ public class User implements java.io.Serializable {
 	public void setBooks(Set books) {
 		this.books = books;
 	}
+
+	public Set<Lost> getLosts() {
+		return losts;
+	}
+
+	public void setLosts(Set<Lost> losts) {
+		this.losts = losts;
+	}
+
+
+	
+	
 	
 	
 }

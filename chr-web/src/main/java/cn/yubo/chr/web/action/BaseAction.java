@@ -18,6 +18,7 @@ import cn.yubo.chr.utils.PageBean;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
+import net.sf.json.util.CycleDetectionStrategy;
 
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	protected T model;
@@ -54,7 +55,10 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 		JsonConfig jsonConfig = new JsonConfig();
 		//指定哪些属性不需要转json
 		jsonConfig.setExcludes(excludes);
+		jsonConfig.setIgnoreDefaultExcludes(false); //设置默认忽略
+		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 		String json = JSONArray.fromObject(list,jsonConfig).toString();
+		System.out.println(json);
 		ServletActionContext.getResponse().setContentType("text/json;charset=utf-8");
 		try {
 			ServletActionContext.getResponse().getWriter().print(json);
@@ -62,6 +66,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 			e.printStackTrace();
 		}
 	}
+	
 	
 	public BaseAction(){
 		ParameterizedType genericSuperclass = (ParameterizedType) this.getClass().getGenericSuperclass();

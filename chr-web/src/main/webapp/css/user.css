@@ -1,66 +1,75 @@
 /*user.html样式开始*/
-#user-header{
+#user-header {
 	height: 330px;
 }
-.user-top{
+
+.user-top {
 	width: 100%;
 	height: 220px;
 	margin: 0 auto;
 	background: url(../images/user-top-bg.jpg) no-repeat center top;
 }
-.user-top-con{
+
+.user-top-con {
 	width: 1138px;
 	height: 220px;
 	margin: 0 auto;
 	position: relative;
 }
-.user-img{
+
+.user-img {
 	width: 200px;
 	height: 200px;
 	border-radius: 50%;
-	border:5px solid #434342;
+	border: 5px solid #434342;
 	position: absolute;
 	left: 0;
-	top:37px;
+	top: 37px;
 }
-.user-nam{
+
+.user-nam {
 	display: inline-block;
 	width: 200px;
 	height: 40px;
 	position: absolute;
 	left: 240px;
 	top: 90px;
-	font:600 32px/40px "微软雅黑";
+	font: 600 32px/40px "微软雅黑";
 	color: #FFF;
 }
-.user-sign{
+
+.user-sign {
 	display: inline-block;
 	width: 350px;
 	height: 60px;
 	position: absolute;
 	left: 240px;
 	top: 150px;
-	font:400 14px/24px "微软雅黑";
+	font: 400 14px/24px "微软雅黑";
 	color: #FFF;
 	opacity: .5;
 }
-#user-main{
+
+#user-main {
 	width: 1138px;
 	height: 843px;
 	margin: 37px auto;
 	position: relative;
 	/*border: 1px solid red;*/
 }
-.user-main-l{
+
+.user-main-l {
 	width: 160px;
 	height: 240px;
 	float: left;
 }
-.user-main-l ul{
+
+.user-main-l ul {
 	width: 160px;
 	height: 240px;
 }
-.user-main-l ul li{
+
+.user-main-l ul li {
 	list-style: none;
 	width: 160px;
 	height: 60px;
@@ -70,7 +79,8 @@
 	text-align: center;
 	border-bottom: 1px solid #787d82;
 }
-.user-main-l ul li a{
+
+.user-main-l ul li a {
 	text-decoration: none;
 	width: 160px;
 	height: 60px;
@@ -79,25 +89,29 @@
 	line-height: 60px;
 	text-align: center;
 }
-.user-main-l ul li a:hover{
+
+.user-main-l ul li a:hover {
 	color: #000;
 }
-.show{
+
+.show {
 	color: #F01400;
 }
-.umr{
+
+.umr {
 	width: 960px;
 	height: 843px;
 	float: right;
 	/*background-color: red;*/
 }
-.umr iframe{
+
+.umr iframe {
 	width: 960px;
 	height: 843px;
 }
 /*user.html样式结束*/
 /*user-book.html样式开始*/
-#book-user-main{
+#book-user-main {
 	width: 1138px;
 	height: 820px;
 	margin: 37px auto;

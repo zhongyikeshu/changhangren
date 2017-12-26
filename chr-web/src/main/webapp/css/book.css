@@ -1,43 +1,313 @@
-#header_book{height: 420px;}
-.book_theme{height: 300px;width: 1300px;margin: 10px auto;border: 1px solid pink;border-radius: 10px;background: url(../images/rich_bg6.jpg) no-repeat;background-attachment: fixed;}
-.book-theme-title{width: 1170px;height: 130px;margin: 85px auto;text-align: center;}
-.book-theme-title span{color: #FFF;font-size: 52px;line-height: 62px;font-weight: bold;}
-.book-theme-title p{color: #FFF;font-size: 18px;}
-#main_book{width: 1300px; height: 1700px;margin: 20px auto;}
-.book_nav{width: 1300px; height: 100px;/*border: 1px solid green;*/margin: 0px auto;position: relative;}
-.book-nav-l{position: absolute;width: 100px;height: 40px;top: 30px;left: 40px;}
-.book-nav-button{width: 70px;height: 40px;}
-.book-nav-ls{box-shadow:0 0 4px #0BB298;width: 70px;height: 40px;background: #0BB298;color: #FFF;border:1px solid #0BB298; display: inline-block;line-height: 40px;text-align: center;}
-.book-nav-ls span{transition: transform 0.5s;-webkit-transition: -webkit-transform 0.5s;}
-.book-nav-button:hover{cursor: pointer;}
-.book-nav-button:hover .book-nav-ls span{transform:rotate(180deg);-moz-transform:rotate(180deg);-webkit-transform:rotate(180deg);-o-transform:rotate(180deg);}
-.book-nav-le{float: left;position: absolute; width: 602px;/*border: 1px solid #0BB298;*//*background: #FFF;*/visibility: hidden;}
-.book-nav-le ul{width: 600px;height: 40px;}
-.book-nav-button:hover .book-nav-le{visibility: visible; z-index: 900;}
-.book-nav-button:hover .book-nav-le ul li{visibility: visible; opacity: 1;height: 40px;line-height: 40px;transition: all 1s;}
-.book-nav-le ul li{background-color: #0BB298; visibility: hidden;opacity:0;float: left;list-style: none;width: 100px;height: 0px;line-height: 0px;text-align: center;}
-.book-nav-le ul li a{text-decoration: none;color: #FFF;}
-.book-nav-le ul li:hover{background-color: #FFF;}
-.book-nav-le ul li:hover a{color: #000;}
-.book-nav-r{position: absolute;width: 320px;height: 40px;top: 30px;right: 40px;border: 0;}
-.book-nav-rb{background: #FFF;border-bottom: 1px solid #000;width: 300px;height: 40px;}
-.search-text{outline: none; border: 0;width: 262px;height: 38px;padding: 0;line-height: 38px;font-size: 14px;float: left;}
-.search-button{border: 0;width: 38px;height: 38px;padding: 0;background: url(../images/search1.png) center no-repeat;float: left;}
-.book_shop{width: 1300px; height: 1500px;/*border: 1px solid blue;*/margin: 0px auto;}
-.book_shop ul li{border: 0px solid orange;box-shadow:0 0 0px orange;transition:border 2s box-shadow 2s;-webkit-transition: border 2s box-shadow 2s;position: relative; text-align: center; overflow: hidden; float: left; border: 1px solid #888;width: 222px;height: 362px;list-style: none;margin-top: 10px;margin-left: 31px;}
-.book_shop ul li img{transition: transform 1s;-webkit-transition: -webkit-transform 1s;margin-top: 10px; width: 200px;height: 200px;}
-.book-mask{width: 220px;height: 220px;display: none;position: absolute;top: 0;left: 0;z-index: 10;background-color: #000;background: rgba(0,0,0,0.75);}
-.book-mask button{outline: none; position: absolute;top: 87px;left: 70px; width: 80px;height: 40px;background-color: #2D6CDF;color: #FFF;border-radius:20px;border: 1px solid #2D6CDF;z-index: 50;}
-.book-shop-nb{width: 220px;height: 140px;position: absolute;bottom: 0;}
-.shum{position: absolute;top: 20px;left: 10px;}
-.zuozhe{position: absolute;top:50px;left: 10px;}
-.chuban{position: absolute;top:80px;left: 10px;}
-.gongx{position: absolute;top:110px;left: 10px;}
-.book_shop ul li:hover{border: 1px solid orange;box-shadow:0 0 6px orange;}
-.book_shop ul li a:hover .book-mask{display: block;}
-.book_shop ul li a:hover img{transform:scale(1.1)}
-.book_page{width: 1300px; height: 100px;/*border: 1px solid yellow;*/margin: 0px auto;}
-.book-pages{width: 516px;height: 50px;margin: 25px auto;}
-.book-pages a{transition: background-color 1s;-webkit-transition: background-color 1s;margin-left: 6px; display: inline-block; border: 1px solid orange;width: 50px;height: 50px;line-height: 50px;text-align: center;color: #000;font-size: 17px;text-decoration: none;border-radius: 4px;}
-.book-pages span{display: inline-block; width: 30px;height: 50px;line-height: 50px;text-align: center;}
-.book-pages a:hover{background-color: #FFD280;}
+#header_book {
+	height: 420px;
+}
+
+.book_theme {
+	height: 300px;
+	width: 1300px;
+	margin: 10px auto;
+	border: 1px solid pink;
+	border-radius: 10px;
+	background: url(../images/rich_bg6.jpg) no-repeat;
+	background-attachment: fixed;
+}
+
+.book-theme-title {
+	width: 1170px;
+	height: 130px;
+	margin: 85px auto;
+	text-align: center;
+}
+
+.book-theme-title span {
+	color: #FFF;
+	font-size: 52px;
+	line-height: 62px;
+	font-weight: bold;
+}
+
+.book-theme-title p {
+	color: #FFF;
+	font-size: 18px;
+}
+
+#main_book {
+	width: 1300px;
+	height: 1700px;
+	margin: 20px auto;
+}
+
+.book_nav {
+	width: 1300px;
+	height: 100px; /*border: 1px solid green;*/
+	margin: 0px auto;
+	position: relative;
+}
+
+.book-nav-l {
+	position: absolute;
+	width: 100px;
+	height: 40px;
+	top: 30px;
+	left: 40px;
+}
+
+.book-nav-button {
+	width: 70px;
+	height: 40px;
+}
+
+.book-nav-ls {
+	box-shadow: 0 0 4px #0BB298;
+	width: 70px;
+	height: 40px;
+	background: #0BB298;
+	color: #FFF;
+	border: 1px solid #0BB298;
+	display: inline-block;
+	line-height: 40px;
+	text-align: center;
+}
+
+.book-nav-ls span {
+	transition: transform 0.5s;
+	-webkit-transition: -webkit-transform 0.5s;
+}
+
+.book-nav-button:hover {
+	cursor: pointer;
+}
+
+.book-nav-button:hover .book-nav-ls span {
+	transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+}
+
+.book-nav-le {
+	float: left;
+	position: absolute;
+	width: 602px; /*border: 1px solid #0BB298;*/ /*background: #FFF;*/
+	visibility: hidden;
+}
+
+.book-nav-le ul {
+	width: 600px;
+	height: 40px;
+}
+
+.book-nav-button:hover .book-nav-le {
+	visibility: visible;
+	z-index: 900;
+}
+
+.book-nav-button:hover .book-nav-le ul li {
+	visibility: visible;
+	opacity: 1;
+	height: 40px;
+	line-height: 40px;
+	transition: all 1s;
+}
+
+.book-nav-le ul li {
+	background-color: #0BB298;
+	visibility: hidden;
+	opacity: 0;
+	float: left;
+	list-style: none;
+	width: 100px;
+	height: 0px;
+	line-height: 0px;
+	text-align: center;
+}
+
+.book-nav-le ul li a {
+	text-decoration: none;
+	color: #FFF;
+}
+
+.book-nav-le ul li:hover {
+	background-color: #FFF;
+}
+
+.book-nav-le ul li:hover a {
+	color: #000;
+}
+
+.book-nav-r {
+	position: absolute;
+	width: 320px;
+	height: 40px;
+	top: 30px;
+	right: 40px;
+	border: 0;
+}
+
+.book-nav-rb {
+	background: #FFF;
+	border-bottom: 1px solid #000;
+	width: 300px;
+	height: 40px;
+}
+
+.search-text {
+	outline: none;
+	border: 0;
+	width: 262px;
+	height: 38px;
+	padding: 0;
+	line-height: 38px;
+	font-size: 14px;
+	float: left;
+}
+
+.search-button {
+	border: 0;
+	width: 38px;
+	height: 38px;
+	padding: 0;
+	background: url(../images/search1.png) center no-repeat;
+	float: left;
+}
+
+.book_shop {
+	width: 1300px;
+	height: 1500px; /*border: 1px solid blue;*/
+	margin: 0px auto;
+}
+
+.book_shop ul li {
+	border: 0px solid orange;
+	box-shadow: 0 0 0px orange;
+	transition: border 2s box-shadow 2s;
+	-webkit-transition: border 2s box-shadow 2s;
+	position: relative;
+	text-align: center;
+	overflow: hidden;
+	float: left;
+	border: 1px solid #888;
+	width: 222px;
+	height: 362px;
+	list-style: none;
+	margin-top: 10px;
+	margin-left: 31px;
+}
+
+.book_shop ul li img {
+	transition: transform 1s;
+	-webkit-transition: -webkit-transform 1s;
+	margin-top: 10px;
+	width: 200px;
+	height: 200px;
+}
+
+.book-mask {
+	width: 220px;
+	height: 220px;
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	background-color: #000;
+	background: rgba(0, 0, 0, 0.75);
+}
+
+.book-mask button {
+	outline: none;
+	position: absolute;
+	top: 87px;
+	left: 70px;
+	width: 80px;
+	height: 40px;
+	background-color: #2D6CDF;
+	color: #FFF;
+	border-radius: 20px;
+	border: 1px solid #2D6CDF;
+	z-index: 50;
+}
+
+.book-shop-nb {
+	width: 220px;
+	height: 140px;
+	position: absolute;
+	bottom: 0;
+}
+
+.shum {
+	position: absolute;
+	top: 20px;
+	left: 10px;
+}
+
+.zuozhe {
+	position: absolute;
+	top: 50px;
+	left: 10px;
+}
+
+.chuban {
+	position: absolute;
+	top: 80px;
+	left: 10px;
+}
+
+.gongx {
+	position: absolute;
+	top: 110px;
+	left: 10px;
+}
+
+.book_shop ul li:hover {
+	border: 1px solid orange;
+	box-shadow: 0 0 6px orange;
+}
+
+.book_shop ul li a:hover .book-mask {
+	display: block;
+}
+
+.book_shop ul li a:hover img {
+	transform: scale(1.1)
+}
+
+.book_page {
+	width: 1300px;
+	height: 100px; /*border: 1px solid yellow;*/
+	margin: 0px auto;
+}
+
+.book-pages {
+	width: 516px;
+	height: 50px;
+	margin: 25px auto;
+}
+
+.book-pages a {
+	transition: background-color 1s;
+	-webkit-transition: background-color 1s;
+	margin-left: 6px;
+	display: inline-block;
+	border: 1px solid orange;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: #000;
+	font-size: 17px;
+	text-decoration: none;
+	border-radius: 4px;
+}
+
+.book-pages span {
+	display: inline-block;
+	width: 30px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+
+.book-pages a:hover {
+	background-color: #FFD280;
+}

@@ -58,5 +58,11 @@
             </key>
             <one-to-many class="cn.yubo.chr.domain.Book" />
         </set>
+        <set name="losts" inverse="true">
+            <key>
+                <column name="l_user_phone" length="11" />
+            </key>
+            <one-to-many class="cn.yubo.chr.domain.Lost" />
+        </set>
     </class>
 </hibernate-mapping>

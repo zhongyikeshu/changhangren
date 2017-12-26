@@ -13,9 +13,20 @@
 	<link rel="stylesheet" type="text/css" href="css/master.css">
 	<script src="js/jquery-1.11.3.min.js"></script>
 	<script src="js/loading.js"></script>
-	<script src="js/mask.js"></script>
 	<script src="http://ajax.microsoft.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
 	<script src="js/to-top.js"></script>
+	<%-- <script src="js/mask.js"></script> --%>
+	<script type="text/javascript">
+	 /*  function booklist(){
+		  window.location.href="${pageContext.request.contextPath }/book.jsp";
+		  $.post('${pageContext.request.contextPath }/bookAction_findAllList',function(data){
+				
+			},'json');
+		
+		}
+	
+	 */
+	</script>
 	<!-- <script src="js/nav_run.js"></script> -->
 </head>
 <body>
@@ -28,28 +39,7 @@
 <!-- 页头 -->
 <div id="header">
 	<!-- 导航栏 -->
-	<div class="nav_wrap">
-	<div class="nav_con">
-		<div class="nav_cont">
-			<span class="nav_cont_l">www.changhangren.top</span>
-			<span class="nav_cont_r">联系我们:@changhangren.top</span>
-		</div>
-	</div>
-	
-	<nav>
-		<div class="nav_logo"><h1><a href="index.html" title="昌航人">昌航人</a></h1></div>
-		<div class="nav_nav">
-			<ul>
-				<li><a href="#">首页</a></li>
-				<li><a href="#">关于</a></li>
-				<li><a href="#">联系</a></li>
-			<div class="nav_btn">
-			<a href="javascript:;" class="nav_cl" id="btnLogin">登录</a>&nbsp;<a href="javascript:;" class="nav_cl" id="btnRegsiter">注册</a>
-			</div>
-			</ul>
-		</div>
-	</nav>
-	</div>
+	<jsp:include page="header.jsp"></jsp:include>
 	<!-- 轮播图 -->
 	<div class="banner">
 	<ul>
@@ -69,15 +59,15 @@
 	<strong>----------功能区----------</strong>
 	<div class="shop">
 		<div class="shop_wrap">
-			<div class="shop_gn"><a href="book.html"><span class="glyphicon glyphicon-home"></span></a>
+			<div class="shop_gn"><a href="${pageContext.request.contextPath }/bookAction_findAllList" ><span class="glyphicon glyphicon-home"></span></a>
 			<h4>南航书院</h4>
 			<p>我们的共享图书馆<br />随时随地上传和借阅图书</p>
 			</div>
-			<div class="shop_gn"><a href="book.html"><span class="glyphicon glyphicon-home"></span></a>
+			<div class="shop_gn"><a href="${pageContext.request.contextPath }/stu/stu-info-manage-html/stu-info-manage.jsp"><span class="glyphicon glyphicon-home"></span></a>
 			<h4>南航书院</h4>
 			<p>我们的共享图书馆<br />随时随地上传和借阅图书</p>
 			</div>
-			<div class="shop_gn"><a href="book.html"><span class="glyphicon glyphicon-home"></span></a>
+			<div class="shop_gn"><a href="${pageContext.request.contextPath }/chat.jsp"><span class="glyphicon glyphicon-home"></span></a>
 			<h4>南航书院</h4>
 			<p>我们的共享图书馆<br />随时随地上传和借阅图书</p>
 			</div>
