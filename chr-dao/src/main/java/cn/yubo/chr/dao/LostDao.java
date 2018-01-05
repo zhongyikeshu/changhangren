@@ -7,6 +7,9 @@ public interface LostDao extends  BaseDao<Lost>{
 
 	void lostPageQuery(PageBean pageBean);
 
+	void foundPageQuery(PageBean pageBean);
+
+
 	
 
 }

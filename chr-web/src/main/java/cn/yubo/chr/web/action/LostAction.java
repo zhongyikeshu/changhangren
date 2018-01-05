@@ -1,31 +1,35 @@
 package cn.yubo.chr.web.action;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.IOUtils;
 import org.apache.struts2.ServletActionContext;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.opensymphony.xwork2.ActionContext;
 
 import cn.yubo.chr.domain.Lost;
+import cn.yubo.chr.domain.User;
 import cn.yubo.chr.service.LostService;
 import cn.yubo.chr.utils.ChrUtils;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
-import net.sf.json.util.CycleDetectionStrategy;
 
 @Controller
 @Scope("prototype")
 public class LostAction extends BaseAction<Lost> {
 	private int currentPage;
+
 	@Autowired
 	private LostService lostService;
 
@@ -50,41 +54,92 @@ public class LostAction extends BaseAction<Lost> {
 			pageBean.setPageSize(5);
 		}
 		lostService.lostPageQuery(pageBean);
-		ChrUtils.getSession().setAttribute("lostPageBean", pageBean);
+		ChrUtils.getSession().setAttribute("pageBean", pageBean);
 		return "lostList";
 	}
 
 	// 加载更多丢失
-	
 	public void findLostMore() throws IOException {
-		System.out.println("ajax");
-		System.out.println(currentPage);
 		pageBean.setPageSize(5);
 		pageBean.setCurrentPage(currentPage);
 		lostService.lostPageQuery(pageBean);
-		Lost lost = (Lost)pageBean.getList().get(0);
-		String[] excludes = {"messages","borrows","books","losts"};
-		JsonConfig jsonConfig = new JsonConfig();
-		//指定哪些属性不需要转json
-		jsonConfig.setExcludes(excludes);
-		jsonConfig.setIgnoreDefaultExcludes(false); //设置默认忽略
-		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-		JSONArray jsonArray = JSONArray.fromObject(pageBean.getList().toArray(),jsonConfig);
-		String json = jsonArray.toString();
-		System.out.println(json);
-		ServletActionContext.getResponse().setContentType("text/json;charset=utf-8");
-		try {
-			ServletActionContext.getResponse().getWriter().print(json);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+		String[] excludes = { "messages", "borrows", "books", "losts" };
+		toJson(pageBean, excludes);
 	}
 
 	// 第一次查询拾取
 	public String findFound() {
+		currentPage = pageBean.getCurrentPage();
+		int pageSize = pageBean.getPageSize();
+		if (currentPage == 0) {
+			pageBean.setCurrentPage(1);
+		}
+		if (pageSize == 0) {
+			pageBean.setPageSize(5);
+		}
+		lostService.foundPageQuery(pageBean);
+		ChrUtils.getSession().setAttribute("pageBean", pageBean);
+		return "lostList";
+	}
 
-		return "lostFound";
+	// 加载更多丢失
+	public void findFoundMore() throws IOException {
+		System.out.println(currentPage);
+		pageBean.setPageSize(5);
+		pageBean.setCurrentPage(currentPage);
+		lostService.foundPageQuery(pageBean);
+		String[] excludes = { "messages", "borrows", "books", "losts" };
+		toJson(pageBean, excludes);
+	}
+
+	public void addLost() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setCharacterEncoding("UTF-8");
+		// 获取参数
+		String title = request.getParameter("title");
+		String details = request.getParameter("details");
+
+		System.out.println("request.getContentType(): " + request.getContentType());
+		User user = ChrUtils.getUser();
+		if(user == null){
+			ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");
+			ServletActionContext.getResponse().getWriter().print("error");
+			return;
+		}
+		Lost lost = new Lost();
+		lost.setId(ChrUtils.getUUID());// id
+		lost.setUser(user);// foreign key
+		lost.setTitle(title);// 标题
+		lost.setDetails(details);// 内容
+		lost.setLostOrPick(0);// 丢失
+		lost.setDate(ChrUtils.getCurrentDate());// 封装时间
+		// lost.setImage(image);
+		lostService.save(lost);
+	}
+	
+	public void addFound() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setCharacterEncoding("UTF-8");
+		// 获取参数
+		String title = request.getParameter("title");
+		String details = request.getParameter("details");
+
+		System.out.println("request.getContentType(): " + request.getContentType());
+		User user = ChrUtils.getUser();
+		if(user == null){
+			ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");
+			ServletActionContext.getResponse().getWriter().print("error");
+			return;
+		}
+		Lost lost = new Lost();
+		lost.setId(ChrUtils.getUUID());// id
+		lost.setUser(user);// foreign key
+		lost.setTitle(title);// 标题
+		lost.setDetails(details);// 内容
+		lost.setLostOrPick(1);// 拾取
+		lost.setDate(ChrUtils.getCurrentDate());// 封装时间
+		// lost.setImage(image);
+		lostService.save(lost);
 	}
 
 	public int getCurrentPage() {

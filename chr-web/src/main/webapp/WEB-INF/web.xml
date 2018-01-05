@@ -13,6 +13,8 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+	
+	
 
 	<!-- 配置过滤器，解决hibernate延迟加载问题 -->
 	<filter>
@@ -46,4 +48,5 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
+	
 </web-app>

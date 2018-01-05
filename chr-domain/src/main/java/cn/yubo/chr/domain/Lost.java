@@ -14,7 +14,7 @@ public class Lost {
 	  `l_user_phone` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
 	 */
 
-	private Integer id;
+	private String id;
 	private String title;
 	private String image;
 	private String details;
@@ -22,11 +22,11 @@ public class Lost {
 	private Integer lostOrPick;
 	private User user;
 	
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

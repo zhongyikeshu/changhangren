@@ -27,6 +27,15 @@ public class LostServiceImpl implements LostService{
 		
 		return lostDao.findAll();
 	}
+
+	@Override
+	public void foundPageQuery(PageBean pageBean) {
+		lostDao.foundPageQuery(pageBean);
+	}
+
+	public void save(Lost lost) {
+		lostDao.save(lost);
+	}
 	
 	
 

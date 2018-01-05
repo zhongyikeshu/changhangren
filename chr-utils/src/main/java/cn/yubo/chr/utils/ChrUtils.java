@@ -1,5 +1,9 @@
 package cn.yubo.chr.utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
@@ -18,5 +22,17 @@ public class ChrUtils {
 		
 		return (User) getSession().getAttribute("user");
 		
+	}
+	
+	//返回ID
+	public static String getUUID(){
+		return UUID.randomUUID().toString();
+	}
+	
+	//获取当前时间
+	public static String getCurrentDate(){
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss aa");
+		return sdf.format(date);
 	}
 }

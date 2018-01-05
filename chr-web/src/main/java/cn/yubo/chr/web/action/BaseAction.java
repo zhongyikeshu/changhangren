@@ -86,6 +86,22 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 		}
 	}
 	
+	public void toJson(Object object, String[] excludes){
+		JsonConfig jsonConfig = new JsonConfig();
+		//指定哪些属性不需要转json
+		jsonConfig.setExcludes(excludes);
+		jsonConfig.setIgnoreDefaultExcludes(false); //设置默认忽略
+		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+		JSONArray jsonArray = JSONArray.fromObject(pageBean,jsonConfig);
+		String json = jsonArray.toString();
+		System.out.println(json);
+		ServletActionContext.getResponse().setContentType("text/json;charset=utf-8");
+		try {
+			ServletActionContext.getResponse().getWriter().print(json);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	

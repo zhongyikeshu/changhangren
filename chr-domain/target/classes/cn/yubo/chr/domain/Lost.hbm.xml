@@ -6,8 +6,8 @@
 -->
 <hibernate-mapping>
     <class name="cn.yubo.chr.domain.Lost" table="lost_info">
-        <id name="id" type="java.lang.Integer">
-            <column name="l_id" length="11" />
+        <id name="id" type="java.lang.String">
+            <column name="l_id" length="50" />
             <generator class="assigned" />
         </id>
         <property name="title" type="java.lang.String">
@@ -25,7 +25,7 @@
         <property name="lostOrPick" type="java.lang.Integer">
             <column name="l_lost_pick" length="11" />
         </property>
-        <many-to-one name="user" class="cn.yubo.chr.domain.User" column="l_user_phone">
+        <many-to-one lazy="false" name="user" class="cn.yubo.chr.domain.User" column="l_user_phone">
            
         </many-to-one>
         

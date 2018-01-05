@@ -11,6 +11,11 @@ public interface LostService {
 
 	List<Lost> findAll();
 
+	void foundPageQuery(PageBean pageBean);
+
+
+	void save(Lost lost);
+
 
 
 }
