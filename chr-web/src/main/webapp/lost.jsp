@@ -144,13 +144,13 @@
         	if(data[0].currentPage!=data[0].totalPage){
         		var temp = data[0].currentPage+1;
         		mydiv = "<div class='load_more' style='text-align:center;'>"+
-    						"<a href='javascript:void(0);' onclick='loadMore("+temp+")'>加载更多</a>"+
+    						"<a href='javascript:void(0);' onclick='loadMore("+temp+")' class='glyphicon glyphicon-menu-down' style='font-size:30px;text-decoration:none;'></a>"+
     						"<br><br>"+
     						"</div>";
         	}
         	else{
         		mydiv = "<div class='load_more' style='text-align:center;'>"+
-							"<p>~我是有底线的~</p>"+
+							"<p style='font-size:20px;'>~我是有底线的~</p>"+
 							"<br><br>"+
 							"</div>";
         	}
@@ -178,6 +178,7 @@
                     	window.location.href = "${pageContext.request.contextPath }/userAction_login";
                 	}
                 	else{
+                		alert("上传成功!");
                     	window.location.href = "${pageContext.request.contextPath }/lostAction_findLost";
                 	}
                 }
@@ -204,6 +205,7 @@
                     	window.location.href = "${pageContext.request.contextPath }/userAction_login";
                 	}
                 	else{
+                		alert("上传成功!");
                     	window.location.href = "${pageContext.request.contextPath }/lostAction_findFound";
                 	}
                 },
@@ -333,10 +335,10 @@
 	<!-- 加载更多 -->
 	<div class="load_more" style="text-align:center;">
 		<c:if test="${pageBean.currentPage!=pageBean.totalPage }">
-			<a href="javascript:void(0);" onclick="loadMore(${pageBean.currentPage+1})">加载更多</a>
+			<a href="javascript:void(0);" onclick="loadMore(${pageBean.currentPage+1})" class="glyphicon glyphicon-menu-down" style="font-size:30px;text-decoration:none;"></a>
 		</c:if>
 		<c:if test="${pageBean.currentPage==pageBean.totalPage }">
-			<p>~我是有底线的~</p>
+			<p style="font-size:20px;">~我是有底线的~</p>
 		</c:if>
 		<br><br>
 	</div>
